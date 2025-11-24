@@ -75,6 +75,12 @@ export async function getDetailsAboutMe(preview = true) {
     aboutMeCollection{
       items{
         name
+        email
+        phone
+        location
+        github
+        linkedin
+        instagram
     }
   }
 }`,

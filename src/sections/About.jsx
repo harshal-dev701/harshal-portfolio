@@ -146,7 +146,7 @@ const StoryCard = ({ title, content, icon: Icon, index, gradient }) => {
   );
 };
 
-const About = ({ heroSectionDetails }) => {
+const About = ({ heroSectionDetails, aboutMe }) => {
   const storyCards = [
     {
       title: "My Journey",
@@ -261,7 +261,7 @@ const About = ({ heroSectionDetails }) => {
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <motion.a
-              href={`mailto:${personal.contact.email}`}
+              href={`mailto:${aboutMe?.email}`}
               className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-brand-500/40 hover:bg-brand-500/10"
               whileHover={{ y: -2, scale: 1.02 }}>
               <div className="mb-3 flex items-center gap-2">
@@ -271,11 +271,11 @@ const About = ({ heroSectionDetails }) => {
                 </p>
               </div>
               <p className="break-words text-sm font-semibold text-white">
-                {personal.contact.email}
+                {aboutMe?.email}
               </p>
             </motion.a>
             <motion.a
-              href={`tel:${personal.contact.phone}`}
+              href={`tel:${aboutMe?.phone}`}
               className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-brand-500/40 hover:bg-brand-500/10"
               whileHover={{ y: -2, scale: 1.02 }}>
               <div className="mb-3 flex items-center gap-2">
@@ -285,7 +285,7 @@ const About = ({ heroSectionDetails }) => {
                 </p>
               </div>
               <p className="text-sm font-semibold text-white">
-                {personal.contact.phone}
+                {aboutMe?.phone}
               </p>
             </motion.a>
             <motion.div
@@ -298,7 +298,7 @@ const About = ({ heroSectionDetails }) => {
                 </p>
               </div>
               <p className="text-sm font-semibold text-white">
-                {personal.contact.location}
+                {aboutMe?.location}
               </p>
             </motion.div>
           </div>
