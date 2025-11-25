@@ -123,7 +123,7 @@ const App = () => {
 
   return (
     <>
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" >
         {isLoading && <Loader progress={progress} />}
       </AnimatePresence>
       
