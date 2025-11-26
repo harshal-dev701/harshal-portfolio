@@ -28,7 +28,7 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState("");
+  const [submitted, setSubmitted] = useState({});
   const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
@@ -40,7 +40,7 @@ const Contact = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/send-mail", {
+      const res = await fetch("/.netlify/functions/send-mail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -48,19 +48,25 @@ const Contact = () => {
       if (res.ok) {
         // await sendContactEmail({ name: formData.name, email: formData.email, message: formData.message });
         setTimeout(() => {
-          setSubmitted("Thanks! Your message has been captured.");
+          setSubmitted({
+            success: true,
+            message: "Thanks! Your message has been captured.",
+          });
           setFormData({ name: "", email: "", message: "" });
         }, 1000);
       } else {
         setTimeout(() => {
-          setSubmitted("Failed to send message. Please try again later.");
+          setSubmitted({
+            error: true,
+            message: "Failed to send message. Please try again later.",
+          });
           setFormData({ name: "", email: "", message: "" });
         }, 1000);
       }
     } catch (error) {
       console.error("Error sending contact email:", error);
     } finally {
-      setSubmitted("")
+      setSubmitted({});
       setLoading(false);
     }
   };
@@ -138,8 +144,10 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: submitted ? 1 : 0, y: submitted ? 0 : 20 }}
-              className={`mt-4 text-sm ${submitted ? "text-brand-300" : "text-red-500"}`}>
-              {submitted}
+              className={`mt-4 text-sm ${
+                submitted.success ? "text-green-500" : "text-red-500"
+              }`}>
+              {submitted.success ? submitted.success : submitted.error}
             </motion.div>
           </motion.form>
 
