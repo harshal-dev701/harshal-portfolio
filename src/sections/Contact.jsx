@@ -46,23 +46,23 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
       if (res.ok) {
-        // await sendContactEmail({ name: formData.name, email: formData.email, message: formData.message });
+        setSubmitted({
+          success: true,
+          message: "Thanks! Your message has been captured.",
+        });
         setTimeout(() => {
-          setSubmitted({
-            success: true,
-            message: "Thanks! Your message has been captured.",
-          });
-          setFormData({ name: "", email: "", message: "" });
+          setSubmitted({});
         }, 1000);
       } else {
+        setSubmitted({
+          error: true,
+          message: "Failed to send message. Please try again later.",
+        });
         setTimeout(() => {
-          setSubmitted({
-            error: true,
-            message: "Failed to send message. Please try again later.",
-          });
-          setFormData({ name: "", email: "", message: "" });
+          setSubmitted({});
         }, 1000);
       }
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Error sending contact email:", error);
     } finally {
