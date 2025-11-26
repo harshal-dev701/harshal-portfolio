@@ -147,7 +147,7 @@ const Contact = () => {
               className={`mt-4 text-sm ${
                 submitted.success ? "text-green-500" : "text-red-500"
               }`}>
-              {submitted.success ? submitted.success : submitted.error}
+              {submitted.success ? submitted.message : submitted.message}
             </motion.div>
           </motion.form>
 
